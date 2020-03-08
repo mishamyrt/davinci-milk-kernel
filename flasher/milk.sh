@@ -1,0 +1,45 @@
+#!/system/bin/sh
+
+#
+# Wait for /data to be mounted
+#
+
+while ! mountpoint -q /data; do
+	sleep 1
+done
+
+if ! grep -q Milk /proc/version; then
+	# Remove this init script
+	rm -f /data/adb/service.d/95-milk.sh
+
+	# Abort and do not apply tweaks
+	exit 0
+fi
+
+#
+# Wait for Android to finish booting
+#
+
+while [ "$(getprop sys.boot_completed)" != 1 ]; do
+	sleep 2
+done
+
+# Adjust dirty ratios
+sysctl vm.dirty_ratio=7
+sysctl vm.dirty_background_ratio=3
+
+# Adjust readahead
+find /sys/block/sd* | while read node; do
+    echo 64 > "$node/queue/read_ahead_kb"
+done
+
+# Set GPU minimum frequency
+chmod 644 /sys/devices/platform/soc/5000000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz
+echo 267 > /sys/devices/platform/soc/5000000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz
+
+# Reduce CPU big cluster maximum frequency
+chmod 644 /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq
+echo 2169600 > /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq
+
+# Set LKM minfree
+echo "18432,23040,27648,51256,150296,200640" > /sys/module/lowmemorykiller/parameters/minfree
