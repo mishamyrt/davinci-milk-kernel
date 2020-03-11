@@ -24,6 +24,10 @@ while [ "$(getprop sys.boot_completed)" != 1 ]; do
 	sleep 2
 done
 
+# Disable exposure adjustment
+chmod 644 /sys/devices/platform/soc/soc:qcom,dsi-display/ea_enable
+echo 0 > /sys/devices/platform/soc/soc:qcom,dsi-display/ea_enable
+
 # Adjust dirty ratios
 sysctl vm.dirty_ratio=7
 sysctl vm.dirty_background_ratio=3
