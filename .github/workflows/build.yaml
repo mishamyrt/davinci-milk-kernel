@@ -51,6 +51,13 @@ jobs:
       env: 
         toolchain_path: ${{ steps.setup.outputs.toolchain_path }}
       run: ./milk pack
+      
+    - name: Publish nightly build
+      env: 
+        toolchain_path: ${{ steps.setup.outputs.toolchain_path }}
+        surge_url: "https://milk-kernel.surge.sh"
+        surge_token:  ${{ secrets.SURGE_TOKEN }}
+      run: ./milk publish
 
     - name: Upload installer
       uses: actions/upload-artifact@v1
