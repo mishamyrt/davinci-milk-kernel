@@ -4143,9 +4143,9 @@ retry:
 		goto nopage;
 
     /* Boost when memory is low so allocation latency doesn't get too bad */
-	cpu_input_boost_kick_max(1000);
-	devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 1000);
-	devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 1000);
+	cpu_input_boost_kick_max(500);
+	devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 500);
+	devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 500);
 
 	/* Try direct reclaim and then allocating */
 	page = __alloc_pages_direct_reclaim(gfp_mask, order, alloc_flags, ac,
