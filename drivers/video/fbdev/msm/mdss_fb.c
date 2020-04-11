@@ -24,7 +24,6 @@
 #include <linux/device.h>
 #include <linux/dma-mapping.h>
 #include <linux/dma-buf.h>
-#include <linux/devfreq_boost.h>
 #include <linux/fb.h>
 #include <linux/init.h>
 #include <linux/ioport.h>
@@ -4916,10 +4915,6 @@ int mdss_fb_do_ioctl(struct fb_info *info, unsigned int cmd,
 		ret = mdss_fb_mode_switch(mfd, dsi_mode);
 		break;
 	case MSMFB_ATOMIC_COMMIT:
- 		if (time_before(jiffies, last_input_time + msecs_to_jiffies(1000))) {
-            devfreq_boost_kick(DEVFREQ_MSM_CPUBW);
-            cpu_input_boost_kick();
-		}
 		ret = mdss_fb_atomic_commit_ioctl(info, argp, file);
 		break;
 
