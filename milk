@@ -22,7 +22,7 @@ zip_basename="milk"
 arch="arm64"
 defconfig="milk_defconfig"
 
-surge_url="https://milk-kernel.surge.sh/"
+surge_url="https://milk-kernel.surge.sh"
 
 # Internal variables
 branch="$(git rev-parse --abbrev-ref HEAD)"
