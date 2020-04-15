@@ -530,7 +530,7 @@ int msm_msi_init(struct device *dev)
 	struct device_node *of_node;
 	const __be32 *prop_val;
 	struct resource *res;
-	void (*msi_handler)(struct irq_desc *);
+	bool (*msi_handler)(struct irq_desc *);
 	u32 grp;
 	u32 index;
 
