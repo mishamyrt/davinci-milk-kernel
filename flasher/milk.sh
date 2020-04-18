@@ -47,3 +47,6 @@ echo 2169600 > /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq
 
 # Set LKM minfree
 echo "18432,23040,27648,51256,150296,200640" > /sys/module/lowmemorykiller/parameters/minfree
+
+# Set vibration level
+echo 2250 > /sys/class/leds/vibrator/vmax_mv
