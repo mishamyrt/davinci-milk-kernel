@@ -7,7 +7,7 @@ bootstrap_path=$(pwd)
 arch="arm64"
 defconfig="milk_defconfig"
 surge_url="https://milk-kernel.surge.sh"
-llvm_revision="r377782c"
+llvm_revision="r377782d"
 
 # Toolchain URLs
 gs="https://android.googlesource.com/platform"
