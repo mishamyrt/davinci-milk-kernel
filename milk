@@ -3,6 +3,12 @@ set -e
 
 bootstrap_path=$(pwd)
 
+# Build variables
+arch="arm64"
+defconfig="milk_defconfig"
+surge_url="https://milk-kernel.surge.sh"
+llvm_revision="r377782c"
+
 # Toolchain URLs
 gs="https://android.googlesource.com/platform"
 gs_prebuilts="$gs/prebuilts"
@@ -14,15 +20,9 @@ gcc64_url="$gs_prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9"
 # Paths
 gcc32_prefix="$toolchain_path/gcc32/bin/arm-linux-androideabi-"
 gcc64_prefix="$toolchain_path/gcc64/bin/aarch64-linux-android-"
-llvm_bin="$toolchain_path/llvm/clang-r377782c/bin"
+llvm_bin="$toolchain_path/llvm/clang-$llvm_revision/bin"
 out_path="out"
 zip_basename="milk"
-
-# Build variables
-arch="arm64"
-defconfig="milk_defconfig"
-
-surge_url="https://milk-kernel.surge.sh"
 
 # Internal variables
 branch="$(git rev-parse --abbrev-ref HEAD)"
