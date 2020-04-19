@@ -284,7 +284,10 @@ DTC_FLAGS += -Wno-unit_address_vs_reg \
 	-Wno-io_channels_property \
 	-Wno-pwms_property \
 	-Wno-thermal_sensors_property \
-	-Wno-pci_device_reg
+	-Wno-pci_device_reg \
+    -Wno-iommus_property \
+    -Wno-interrupts_extended_property \
+    -Wno-graph_child_address
 endif
 
 ifeq ($(KBUILD_ENABLE_EXTRA_GCC_CHECKS),2)
