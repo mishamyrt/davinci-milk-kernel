@@ -82,7 +82,7 @@ get_clang_version () {
 
 # Parse binutils version
 get_binutils_version () {
-  echo $("$gcc64_prefix"ar --version | perl -ne 'print $1 if  /\(GNU Binutils\) (.[^)]+)/gs')
+  echo $("$gcc64_prefix"ar --version | perl -ne 'print $1 if  /\) (.[^)]+)/gs' | head -n1)
 }
 
 # Create ZIP installer
