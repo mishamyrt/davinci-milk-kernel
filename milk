@@ -12,7 +12,6 @@ llvm_revision="r377782d"
 # Toolchain URLs
 gs="https://android.googlesource.com/platform"
 gs_prebuilts="$gs/prebuilts"
-gs_system="$gs/system"
 llvm_url="$gs_prebuilts/clang/host/linux-x86"
 gcc32_url="$gs_prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
 gcc64_url="$gs_prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9"
